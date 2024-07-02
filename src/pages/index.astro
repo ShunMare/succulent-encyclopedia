@@ -1,0 +1,158 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Card from "@components/Card.astro";
+import "@styles/clamps.css";
+import "@styles/animations.css";
+import "@styles/fonts.css";
+import "@styles/utils.css";
+import { plants } from "@constants/plantDatabase.ts";
+
+const filteredPlants = plants
+  .filter(
+    (plant) => plant.id !== 0 && plant.name !== "" && plant.fileName !== ""
+  )
+  .sort((a, b) => a.reading.localeCompare(b.reading));
+
+const groups: { [key: string]: typeof filteredPlants } = {
+  ア: [],
+  カ: [],
+  サ: [],
+  タ: [],
+  ナ: [],
+  ハ: [],
+  マ: [],
+  ヤ: [],
+  ラ: [],
+  ワ: [],
+  その他: [],
+};
+
+const groupMapping: { [key: string]: string } = {
+  ア: "ア",
+  イ: "ア",
+  ウ: "ア",
+  エ: "ア",
+  オ: "ア",
+  カ: "カ",
+  キ: "カ",
+  ク: "カ",
+  ケ: "カ",
+  コ: "カ",
+  ガ: "カ",
+  ギ: "カ",
+  グ: "カ",
+  ゲ: "カ",
+  ゴ: "カ",
+  サ: "サ",
+  シ: "サ",
+  ス: "サ",
+  セ: "サ",
+  ソ: "サ",
+  ザ: "サ",
+  ジ: "サ",
+  ズ: "サ",
+  ゼ: "サ",
+  ゾ: "サ",
+  タ: "タ",
+  チ: "タ",
+  ツ: "タ",
+  テ: "タ",
+  ト: "タ",
+  ダ: "タ",
+  ヂ: "タ",
+  ヅ: "タ",
+  デ: "タ",
+  ド: "タ",
+  ナ: "ナ",
+  ニ: "ナ",
+  ヌ: "ナ",
+  ネ: "ナ",
+  ノ: "ナ",
+  ハ: "ハ",
+  ヒ: "ハ",
+  フ: "ハ",
+  ヘ: "ハ",
+  ホ: "ハ",
+  バ: "ハ",
+  ビ: "ハ",
+  ブ: "ハ",
+  ベ: "ハ",
+  ボ: "ハ",
+  パ: "ハ",
+  ピ: "ハ",
+  プ: "ハ",
+  ペ: "ハ",
+  ポ: "ハ",
+  マ: "マ",
+  ミ: "マ",
+  ム: "マ",
+  メ: "マ",
+  モ: "マ",
+  ヤ: "ヤ",
+  ユ: "ヤ",
+  ヨ: "ヤ",
+  ラ: "ラ",
+  リ: "ラ",
+  ル: "ラ",
+  レ: "ラ",
+  ロ: "ラ",
+  ワ: "ワ",
+  ヲ: "ワ",
+  ン: "ワ",
+};
+
+filteredPlants.forEach((plant) => {
+  const firstChar = plant.reading.charAt(0);
+  const group = groupMapping[firstChar] || "その他";
+  if (groups[group]) {
+    groups[group].push(plant);
+  } else {
+    groups["その他"].push(plant);
+  }
+});
+---
+
+<Layout title="グリーンサクセサリー | 多肉植物図鑑">
+  <main class="bg-[#FBE3DE] flex justify-center">
+    <div
+      class="pt-clamp-15vh pb-clamp-20vh max-w-[768px] w-full px-clamp-2vw overflow-x-hidden"
+    >
+      {
+        Object.keys(groups).map(
+          (group) =>
+            groups[group].length > 0 && (
+              <div>
+                <h2 class="font-KleeOneRegular text-clamp-7vw text-[#605c5f] mt-clamp-2vh">
+                  {group}
+                </h2>
+                <div class="grid grid-cols-3 gap-clamp-3vw">
+                  {groups[group].map((plant) => {
+                    const relatedNames = plant.relatedId
+                      .map((id) => {
+                        const relatedPlant = plants.find((p) => p.id === id);
+                        return relatedPlant ? relatedPlant.name : "";
+                      })
+                      .join(", ");
+
+                    return (
+                      <Card
+                        key={plant.id}
+                        name={plant.name}
+                        scientificName={plant.scientificName}
+                        fileName={plant.fileName}
+                        family={plant.family}
+                        genus={plant.genus}
+                        notes={plant.notes}
+                        link={plant.link}
+                        relatedName={relatedNames}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            )
+        )
+      }
+    </div>
+  </main>
+</Layout>

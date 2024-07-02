@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "KleeOne Regular";
+  src:
+    url("/assets/fonts/KleeOne/KleeOne-Regular.woff2") format("woff2"),
+    url("/assets/fonts/KleeOne/KleeOne-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "KleeOne SemiBold";
+  src:
+    url("/assets/fonts/KleeOne/KleeOne-SemiBold.woff2") format("woff2"),
+    url("/assets/fonts/KleeOne/KleeOne-SemiBold.woff") format("woff");
+}

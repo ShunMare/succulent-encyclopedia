@@ -1,0 +1,61 @@
+---
+export interface Plant {
+  name: string;
+  scientificName: string;
+  fileName: string;
+  family: string;
+  genus: string;
+  notes: string;
+  link: string;
+  relatedName: string;
+}
+
+const {
+  name,
+  scientificName,
+  fileName,
+  family,
+  genus,
+  notes,
+  link,
+  relatedName,
+} = Astro.props;
+---
+
+<section class="relative py-clamp-3vw text-clamp-2.8vw">
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 h-clamp-0.1vw w-[95%] bg-black"
+  >
+  </div>
+  <div class="h-clamp-15vw">
+    <h3 class="text-clamp-3.3vw">{name}</h3>
+    <p class="text-clamp-2.5vw">{scientificName}</p>
+  </div>
+  {
+    link ? (
+      <a href={link}>
+        <div class="w-full aspect-ratio my-clamp-1vh">
+          <img
+            class="w-full"
+            src={`/assets/images/succulent/${fileName}.png`}
+            alt={name}
+          />
+        </div>
+      </a>
+    ) : (
+      <div class="w-full aspect-ratio my-clamp-1vh">
+        <img
+          class="w-full"
+          src={`/assets/images/succulent/${fileName}.png`}
+          alt={name}
+        />
+      </div>
+    )
+  }
+  <p>
+    {family}
+    {genus}
+  </p>
+  <p>{notes}</p>
+  {relatedName && <p class="mt-clamp-2vh">別名 : {relatedName}</p>}
+</section>
