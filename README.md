@@ -64,3 +64,9 @@ node generate-tailwind.js
 ```bash
 npm run astro preferences disable devToolbar
 ```
+
+## convert to webp
+
+```bash
+python convert_to_webp_folder.py
+```

@@ -1,4 +1,6 @@
 ---
+import ResponsivePicture from "@components/ResponsivePicture.astro";
+
 export interface Plant {
   name: string;
   scientificName: string;
@@ -44,9 +46,9 @@ const {
       </a>
     ) : (
       <div class="w-full aspect-ratio my-clamp-1vh">
-        <img
-          class="w-full"
-          src={`/assets/images/succulent/${fileName}.png`}
+        <ResponsivePicture
+          className="w-full"
+          src={`/assets/images/succulent/${fileName}`}
           alt={name}
         />
       </div>

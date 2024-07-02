@@ -1,0 +1,76 @@
+---
+interface Props {
+  idName?: string;
+  largeBreakpoint?: number;
+  mediumBreakpoint?: number;
+  className?: string;
+  src: string;
+  largeScale?: number;
+  mediumScale?: number;
+  smallScale?: number;
+  loading?: "eager" | "lazy" | "";
+  alt: string;
+}
+
+const {
+  idName = "",
+  largeBreakpoint = 768,
+  mediumBreakpoint = 430,
+  className = "",
+  src,
+  largeScale = 1,
+  mediumScale = 1,
+  smallScale = 1,
+  loading = "lazy",
+  alt,
+} = Astro.props;
+
+const largeImageWebp =
+  largeScale > 1 ? `${src}@${largeScale}x.webp` : `${src}.webp`;
+const largeImagePng =
+  largeScale > 1 ? `${src}@${largeScale}x.png` : `${src}.png`;
+const mediumImageWebp =
+  mediumScale > 1 ? `${src}@${mediumScale}x.webp` : `${src}.webp`;
+const mediumImagePng =
+  mediumScale > 1 ? `${src}@${mediumScale}x.png` : `${src}.png`;
+const smallImageWebp =
+  smallScale > 1 ? `${src}@${smallScale}x.webp` : `${src}.webp`;
+const smallImagePng =
+  smallScale > 1 ? `${src}@${smallScale}x.png` : `${src}.png`;
+---
+
+<picture>
+  <source
+    media={`(min-width: ${largeBreakpoint}px)`}
+    srcset={largeImageWebp}
+    type="image/webp"
+  />
+  <source
+    media={`(min-width: ${largeBreakpoint}px)`}
+    srcset={largeImagePng}
+    type="image/png"
+  />
+
+  <source
+    media={`(min-width: ${mediumBreakpoint}px)`}
+    srcset={mediumImageWebp}
+    type="image/webp"
+  />
+  <source
+    media={`(min-width: ${mediumBreakpoint}px)`}
+    srcset={mediumImagePng}
+    type="image/png"
+  />
+
+  <source srcset={smallImageWebp} type="image/webp" />
+  <source srcset={smallImagePng} type="image/png" />
+
+  <img
+    id={idName}
+    src={smallImagePng}
+    class=`pointer-events-none ${className}`
+    loading={loading || undefined}
+    alt={alt}
+    oncontextmenu="return false;"
+  />
+</picture>
