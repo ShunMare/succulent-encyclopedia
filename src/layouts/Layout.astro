@@ -5,19 +5,27 @@ import Footer from "@layouts/Footer.astro";
 
 interface Props {
   title: string;
+  titleTemplate: string;
   description: string;
+  ogType: string;
   imgURL: string;
-  url: string;
+  siteURL: string;
 }
 
-const { title, description, imgURL, url } = Astro.props;
+const { title, titleTemplate, description, ogType, imgURL, siteURL } =
+  Astro.props;
 ---
 
 <!doctype html>
 <html lang="ja">
-  <head>
-    <Head title={title} description={description} imgURL={imgURL} url={url} />
-  </head>
+  <Head
+    title={title}
+    titleTemplate={titleTemplate}
+    description={description}
+    ogType={ogType}
+    imgURL={imgURL}
+    siteURL={siteURL}
+  />
   <body class="font-KleeOneSemiBold">
     <Header />
     <slot />
