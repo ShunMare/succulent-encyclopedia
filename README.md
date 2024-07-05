@@ -70,3 +70,9 @@ npm run astro preferences disable devToolbar
 ```bash
 python convert_to_webp_folder.py
 ```
+
+## compress img
+
+```bash
+python compress_images.py
+```
