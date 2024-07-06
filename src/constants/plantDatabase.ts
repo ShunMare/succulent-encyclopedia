@@ -3580,7 +3580,7 @@ export const plants: Plant[] = [
     id: 298,
     name: "P.ナイト",
     scientificName: "Sempervivum 'P. Night'",
-    fileName: "Sempervivum-p-night",
+    fileName: "sempervivum-p-night",
     family: "ベンケイソウ科",
     genus: "センペルビブム属",
     notes: "",
@@ -5700,7 +5700,42 @@ export const plants: Plant[] = [
     reading: "オパリナ",
     link: ""
   },
-
+  {
+    id: 475,
+    name: "七福神",
+    scientificName: "Echeveria 'Shichifukujin'",
+    fileName: "echeveria-shichifukujin",
+    family: "ベンケイソウ科",
+    genus: "エケベリア属",
+    notes: "",
+    relatedId: [],
+    reading: "シチフクジン",
+    link: ""
+  },
+  {
+    id: 476,
+    name: "黒オブツーサ",
+    scientificName: "Haworthia obutusa 'Black'",
+    fileName: "haworthia-obutusa-black",
+    family: "キジカクシ科ツルボラン亜科",
+    genus: "ハオルチア属",
+    notes: "",
+    relatedId: [477],
+    reading: "クロオブツーサ",
+    link: ""
+  },
+  {
+    id: 477,
+    name: "黒葡萄",
+    scientificName: "Haworthia obutusa 'Black'",
+    fileName: "haworthia-obutusa-black",
+    family: "キジカクシ科ツルボラン亜科",
+    genus: "ハオルチア属",
+    notes: "",
+    relatedId: [476],
+    reading: "クロブドウ",
+    link: ""
+  },
 ];
 
 export default plants;
