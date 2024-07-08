@@ -6,6 +6,7 @@ import "@styles/animations.css";
 import "@styles/fonts.css";
 import "@styles/utils.css";
 import { plants } from "@constants/plantDatabase.ts";
+import ScrollToTopButton from "@components/ScrollToTopButton.tsx";
 
 const filteredPlants = plants
   .filter(
@@ -27,7 +28,7 @@ const groups: { [key: string]: typeof filteredPlants } = {
   その他: [],
 };
 
-const groupMapping: { [key: string]: string } = {
+const kanaToGroup: { [key: string]: string } = {
   ア: "ア",
   イ: "ア",
   ウ: "ア",
@@ -101,9 +102,23 @@ const groupMapping: { [key: string]: string } = {
   ン: "ワ",
 };
 
+const groupMapping: { [key: string]: string } = {
+  ア: "a",
+  カ: "ka",
+  サ: "sa",
+  タ: "ta",
+  ナ: "na",
+  ハ: "ha",
+  マ: "ma",
+  ヤ: "ya",
+  ラ: "ra",
+  ワ: "wa",
+  その他: "others",
+};
+
 filteredPlants.forEach((plant) => {
   const firstChar = plant.reading.charAt(0);
-  const group = groupMapping[firstChar] || "その他";
+  const group = (kanaToGroup[firstChar] as string) || "その他";
   if (groups[group]) {
     groups[group].push(plant);
   } else {
@@ -120,16 +135,35 @@ filteredPlants.forEach((plant) => {
   imgURL="/assets/og-image.png"
   siteURL="https://taniku.blog/encyclopedia/"
 >
+  <nav class="shadow pt-clamp-10vw w-full bg-[#FBE3DE] text-clamp-5vw">
+    <ul class="flex justify-center gap-clamp-2vw">
+      {
+        Object.keys(groups).map((group) => (
+          <li>
+            <a
+              href={`#group-${groupMapping[group]}`}
+              class="hover:underline"
+            >
+              {group}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
   <main class="bg-[#FBE3DE] flex justify-center">
     <div
-      class="pt-clamp-15vh pb-clamp-20vh max-w-[768px] w-full px-clamp-2vw overflow-x-hidden"
+      class="pt-clamp-7vh pb-clamp-20vh max-w-[768px] w-full px-clamp-2vw overflow-x-hidden"
     >
       {
         Object.keys(groups).map(
           (group) =>
             groups[group].length > 0 && (
               <div>
-                <h2 class="font-KleeOneRegular text-clamp-7vw text-[#605c5f] mt-clamp-2vh">
+                <h2
+                  id={`group-${groupMapping[group]}`}
+                  class="font-KleeOneRegular text-clamp-7vw text-[#605c5f] mt-clamp-2vh"
+                >
                   {group}
                 </h2>
                 <div class="grid grid-cols-3 gap-clamp-3vw">
@@ -162,4 +196,5 @@ filteredPlants.forEach((plant) => {
       }
     </div>
   </main>
+  <ScrollToTopButton client:load />
 </Layout>

@@ -76,3 +76,9 @@ python convert_to_webp_folder.py
 ```bash
 python compress_images.py
 ```
+
+### install react
+
+```bash
+npm install @astrojs/react react react-dom
+```
