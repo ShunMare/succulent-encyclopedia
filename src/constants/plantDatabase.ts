@@ -5952,6 +5952,30 @@ export const plants: Plant[] = [
     reading: "オンスロウ",
     link: ""
   },
+  {
+    id: 495,
+    name: "パールフォンニュルンベルグ錦",
+    scientificName: "Echeveria 'Peale Von Nurnberg' f.variegata",
+    fileName: "echeveria-peale-von-nurnberg-variegata",
+    family: "ベンケイソウ科",
+    genus: "エケベリア属",
+    notes: "",
+    relatedId: [],
+    reading: "パールフォンニュルンベルグニシキ",
+    link: ""
+  },
+  {
+    id: 496,
+    name: "キューベンセ",
+    scientificName: "Sempervivum 'Arachnoideum Cuebenese'",
+    fileName: "sempervivum-arachnoideum-cuebenese",
+    family: "ベンケイソウ科",
+    genus: "センペルビブム属",
+    notes: "",
+    relatedId: [],
+    reading: "キューベンセ",
+    link: ""
+  },
 ];
 
 export default plants;

@@ -34,6 +34,7 @@ const kanaToGroup: { [key: string]: string } = {
   ウ: "ア",
   エ: "ア",
   オ: "ア",
+  ヴ: "ア",
   カ: "カ",
   キ: "カ",
   ク: "カ",
@@ -135,22 +136,26 @@ filteredPlants.forEach((plant) => {
   imgURL="/assets/og-image.png"
   siteURL="https://taniku.blog/encyclopedia/"
 >
-  <nav class="shadow pt-clamp-10vw w-full bg-[#FBE3DE] text-clamp-5vw">
-    <ul class="flex justify-center gap-clamp-2vw">
-      {
-        Object.keys(groups).map((group) => (
-          <li>
-            <a
-              href={`#group-${groupMapping[group]}`}
-              class="hover:underline"
-            >
-              {group}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
+  <div class="bg-[#FBE3DE]">
+    <nav
+      class="pt-clamp-10vw w-full text-clamp-3vw max-w-[768px] mx-auto"
+    >
+      <ul class="grid grid-cols-5 gap-clamp-2vw mx-auto">
+        {
+          Object.keys(groups).map((group) => (
+            <li class="rounded-full w-clamp-10vw bg-[#FFAFAB] aspect-square text-center pt-clamp-2.3vw mx-auto">
+              <a
+                href={`#group-${groupMapping[group]}`}
+                class="hover:underline whitespace-nowrap"
+              >
+                {group}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
   <main class="bg-[#FBE3DE] flex justify-center">
     <div
       class="pt-clamp-7vh pb-clamp-20vh max-w-[768px] w-full px-clamp-2vw overflow-x-hidden"
